@@ -3,19 +3,19 @@ import matplotlib.pyplot as plt
 from astropy.table import Table
 from astropy.io import ascii
 
-a = 3 
-m = 1 
-V0 = 10#10
-hbar = 1 
+a = 3.0 
+m = 1.0 
+V0 = 10.0
+hbar = 1.0 
 
-delta = np.sqrt(2*m*V0/(hbar**2.0))
+delta = np.sqrt(2.0*m*V0*(a**2.0)/(hbar**2.0))
 eta = np.arange(0.001,2*np.pi,0.01)
 
 def f(eta): 
     """
     This is the lhs in the transcendental equations.
     """
-    return np.sqrt(((delta/eta)**2)-1)
+    return np.sqrt(((delta/eta)**2.0)-1.0)
 
 def f1(eta):
     """
@@ -27,14 +27,14 @@ def f2(eta):
     """
     The equation whose zeros are to be found to obtain the odd solution.
     """
-    return f(eta) + (1/np.tan(eta))
+    return f(eta) + (1.0/np.tan(eta))
 
 def firstDerivative_O4(function,x0,stepsize):
     """
     Returns first derivative of the function "function" at the point x0 by considering points, one and two steps on either side of x0.
     The Accuracy is of order (stepsize)^4.
     """
-    return (function(x0 - 2*stepsize) - 8*function(x0 - stepsize) + 8*function(x0 + stepsize) - function(x0 + 2*stepsize))/(12*stepsize)
+    return (function(x0 - 2.0*stepsize) - 8.0*function(x0 - stepsize) + 8.0*function(x0 + stepsize) - function(x0 + 2.0*stepsize))/(12.0*stepsize)
 
 def Newton_Raphson(f,x0,stepsize):
     """
@@ -42,7 +42,7 @@ def Newton_Raphson(f,x0,stepsize):
     """
     fprime = firstDerivative_O4(f,x0,stepsize)
     x1 = x0 - (f(x0)/fprime)
-    while((x0 - x1) >= stepsize**(8)):
+    while((x0 - x1) >= stepsize**(8.0)):
         x0 = x1
         fprime = firstDerivative_O4(f,x0,stepsize)
         x1 = x0 - f(x0)/fprime
@@ -52,11 +52,13 @@ def get_energy(eta):
     """
     Gets energy value for given eta value.
     """
-    return (eta**2)*(hbar**2)/(2*m*(a**2))
+    return (eta**2.0)*(hbar**2.0)/(2.0*m*(a**2.0))
 
+even_guess = np.pi/4.0
+odd_guess = 0.999*np.pi
 
-even_sol = Newton_Raphson(f1,np.pi/4,10**(-3))
-odd_sol = Newton_Raphson(f2,4*np.pi/5,10**(-3))
+even_sol = Newton_Raphson(f1,even_guess,10**(-3))
+odd_sol = Newton_Raphson(f2,odd_guess,10**(-3))
 print("eta for even sol : {etev:0.6f}".format(etev=even_sol))
 print("eta for odd sol : {etod:0.6f}".format(etod=odd_sol))
 print("Energy for even state is : {e2:0.6f}".format(e2=get_energy(even_sol)))
@@ -75,9 +77,9 @@ plt.xlim(0,4)
 plt.title("Even and odd solutions to finite well")
 plt.xlabel(r"$\eta$")
 plt.axhline(y=0,color="black",linewidth=0.5)
-plt.axvline(x=np.pi/4,color="b",linestyle="--",linewidth=1,label="Guess even solution")
+plt.axvline(x=even_guess,color="b",linestyle="--",linewidth=1,label="Guess even solution")
 plt.axvline(x=even_sol,color="b",linewidth=1)
-plt.axvline(x=2*np.pi/3,color="y",linestyle="--",linewidth=1,label="Guess odd solution")
+plt.axvline(x=odd_guess,color="y",linestyle="--",linewidth=1,label="Guess odd solution")
 plt.axvline(x=odd_sol,color="y",linewidth=1)
 plt.plot(even_sol,np.tan(even_sol),"bo",label="Even solution")
 plt.plot(odd_sol,-1.0/np.tan(odd_sol),"yo",label="Odd solution")
