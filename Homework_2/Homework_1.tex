@@ -1,17 +1,71 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{xfrac}
+\usepackage{float}
+\usepackage[a4paper, total={7.5in, 10in}]{geometry}
+\usepackage{longtable}
+\usepackage[table]{xcolor}
+\usepackage{listings}
+\lstset{
+breaklines=true
+}
+%http://tex.stackexchange.com/questions/116534/lstlisting-line-wrapping
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue
+}
+\usepackage{color}
+ 
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+ 
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+ 
+\lstset{style=mystyle}
+
+%opening
+
+\title{}
+\author{}
+\date{}
+
+\begin{document}
+
+\section*{Python code and analysis}
+\begin{lstlisting}[language=python]
 import numpy as np
 import matplotlib.pyplot as plt
-from astropy.table import Table
-from astropy.io import ascii
 
 a = 3.0               # the half width of the well in angstroms 
 m = 1.0               # mass of electron in 1 me units
 V0 = 10.0             # height/depth of well in eV
 hbar = 1.0            # hbar
-
 delta = np.sqrt(2.0*m*V0*(a**2.0)/(hbar**2.0))     # Defined in the hand written solution
 eta = np.arange(0.001,2*np.pi,0.01)  # Defined in the hand written solutiom
 
-def f(f,eta): 
+def f(f,eta):
     """
     This is the lhs in the transcendental equations.
     """
@@ -47,7 +101,7 @@ def Newton_Raphson(f,x0,stepsize):
         fprime = firstDerivative_O4(f,x0,stepsize)
         x1 = x0 - f(x0)/fprime
     return x1
-    
+
 def get_energy(eta):
     """
     Gets energy value for given eta value.
@@ -58,39 +112,30 @@ def get_energy(eta):
 
 even_guess = np.pi/4.0   # Guess for even solution
 odd_guess = 0.999*np.pi  # Guess for odd solution
-
 even_sol = Newton_Raphson(f1,even_guess,10**(-3)) # Obtaining the solution using the Newton Raphson method
 odd_sol = Newton_Raphson(f2,odd_guess,10**(-3))   # Obtaining the solution using the Newton Raphson method
 
-
+### Printing the solutions
 print("eta for even sol : {etev:0.6f}".format(etev=even_sol))
 print("eta for odd sol : {etod:0.6f}".format(etod=odd_sol))
 print("Energy for even state is : {e2:0.6f}".format(e2=get_energy(even_sol)))
 print("Energy for odd state is : {e1:0.6f}".format(e1=get_energy(odd_sol)))
 
-## Plotting the graph
+\end{lstlisting}
 
-plt.plot(np.arange(0,(np.pi/2.0)-0.01,0.01),np.tan(np.arange(0,(np.pi/2.0)-0.01,0.01)),"b-",label=r"$tan(\eta)$")
-plt.plot(np.arange((np.pi/2.0)+0.01,(3*np.pi/2.0)-0.01,0.01),np.tan(np.arange((np.pi/2.0)+0.01,(3*np.pi/2.0)-0.01,0.01)),"b-")
-plt.plot(np.arange(0.01,np.pi-0.01,0.01),-1.0/np.tan(np.arange(0.01,np.pi-0.01,0.01)),"y-",label=r"$-cot(\eta)$")
-plt.plot(np.arange(np.pi+0.01,2*np.pi-0.01,0.01),-1.0/np.tan(np.arange(np.pi+0.01,2*np.pi-0.01,0.01)),"y-")
-plt.plot(eta,f(eta),"r-",label=r"$\sqrt{\frac{\Delta^{2}}{\eta^{2}}-1}$")
-plt.ylim(-10,50)
-plt.xticks(np.array([0,np.pi/4.0,np.pi/2.0,3*np.pi/4.0,np.pi,5*np.pi/4.0]),("0",r"$\frac{\pi}{4}$",r"$\frac{\pi}{2}$",r"$\frac{3\pi}{4}$",r"$\pi$",r"$\frac{5\pi}{4}$"))
-plt.xlim(0,4)
-plt.title("Even and odd solutions to finite well")
-plt.xlabel(r"$\eta$")
-plt.axhline(y=0,color="black",linewidth=0.5)
-plt.axvline(x=even_guess,color="b",linestyle="--",linewidth=1,label="Guess even solution")
-plt.axvline(x=even_sol,color="b",linewidth=1)
-plt.axvline(x=odd_guess,color="y",linestyle="--",linewidth=1,label="Guess odd solution")
-plt.axvline(x=odd_sol,color="y",linewidth=1)
-plt.plot(even_sol,np.tan(even_sol),"bo",label="Even solution")
-plt.plot(odd_sol,-1.0/np.tan(odd_sol),"yo",label="Odd solution")
-plt.legend(loc='upper right',fontsize='xx-small')
-plt.show()
+The outputs are shown below :
 
-t = Table([[even_sol],[odd_sol],[get_energy(even_sol)],[get_energy(odd_sol)]], names=["Even solution","Odd solution","Even energy","Odd energy"])
+\input{Finite_well_solutions}
 
-ascii.write(t,"Finite_well_solutions.tex",format="latex")
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.9]{transcendental_sol.pdf} 
+\end{figure}
 
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.9]{wavefunction_plot_zoomed.pdf} 
+\end{figure}
+
+
+\end{document}
