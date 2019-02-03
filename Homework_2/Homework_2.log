@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.10.15)  3 FEB 2019 15:25
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.10.15)  3 FEB 2019 15:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**Homework_1.tex
-(./Homework_1.tex
+**Homework_2.tex
+(./Homework_2.tex
 LaTeX2e <2016/02/01>
 Babel <3.9q> and hyphenation patterns for 81 language(s) loaded.
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
@@ -959,8 +959,8 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 Package hyperref Info: Option `colorlinks' set `true' on input line 19.
 
-(./Homework_1.aux)
-\openout1 = `Homework_1.aux'.
+No file Homework_2.aux.
+\openout1 = `Homework_2.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 54.
 LaTeX Font Info:    ... okay on input line 54.
@@ -976,7 +976,7 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 54.
 LaTeX Font Info:    ... okay on input line 54.
 LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 54.
 LaTeX Font Info:    Try loading font information for TS1+cmr on input line 54.
- (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
+(/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    ... okay on input line 54.
@@ -1059,10 +1059,8 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 54.
 LaTeX Info: Redefining \pageref on input line 54.
 LaTeX Info: Redefining \nameref on input line 54.
-
-(./Homework_1.out) (./Homework_1.out)
 \@outlinefile=\write3
-\openout3 = `Homework_1.out'.
+\openout3 = `Homework_2.out'.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
@@ -1115,17 +1113,24 @@ pdfTeX warning: /usr/bin/pdflatex (file ./wavefunction_plot_zoomed.pdf): PDF in
 clusion: multiple pdfs with page group included in a single page
 >]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 141.
- (./Homework_1.aux)
+ (./Homework_2.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 141.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 141.
-Package rerunfilecheck Info: File `Homework_1.out' has not changed.
-(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
+
+
+Package rerunfilecheck Warning: File `Homework_2.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `Homework_2.out':
+(rerunfilecheck)             Before: <no file>
+(rerunfilecheck)             After:  D41D8CD98F00B204E9800998ECF8427E;0.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 141.
  ) 
 Here is how much of TeX's memory you used:
- 16678 strings out of 493029
- 282665 string characters out of 6136233
- 624719 words of memory out of 5000000
+ 16672 strings out of 493029
+ 282575 string characters out of 6136233
+ 624703 words of memory out of 5000000
  20001 multiletter control sequences out of 15000+600000
  7309 words of font info for 27 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1138,7 +1143,7 @@ t/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts
 public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
 msfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
 cm/cmsy8.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm0800.pfb>
-Output written on Homework_1.pdf (2 pages, 110701 bytes).
+Output written on Homework_2.pdf (2 pages, 110701 bytes).
 PDF statistics:
  225 PDF objects out of 1000 (max. 8388607)
  142 compressed objects within 2 object streams
