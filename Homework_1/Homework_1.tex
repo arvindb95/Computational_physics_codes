@@ -1,0 +1,217 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{xfrac}
+\usepackage[a4paper, total={7.5in, 10in}]{geometry}
+\usepackage{longtable}
+\usepackage[table]{xcolor}
+\usepackage{listings}
+\lstset{
+breaklines=true
+}
+%http://tex.stackexchange.com/questions/116534/lstlisting-line-wrapping
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue
+}
+\usepackage{color}
+ 
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+ 
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+ 
+\lstset{style=mystyle}
+
+%opening
+
+\title{\textbf{Homework 1 : Numerical Integration}}
+\author{Arvind Balasubramanian}
+
+\begin{document}
+\maketitle
+\section*{Removing the singularities in the function}
+
+The integral to be calculated is :
+\begin{equation*}
+ \boxed{I = \int_{0}^{1} t^{\sfrac{-2}{3}} (1-t)^{\sfrac{-1}{3}} dt}
+\end{equation*}
+As we can see there are singularities at 0 and 1. First, let us break this integral into two parts as follows :
+
+\begin{equation*}
+ I = \int_{0}^{\sfrac{1}{2}} t^{\sfrac{-2}{3}} (1-t)^{\sfrac{-1}{3}} dt + \int_{\sfrac{1}{2}}^{1} t^{\sfrac{-2}{3}} (1-t)^{\sfrac{-1}{3}} dt
+\end{equation*}
+
+Consider only the first integral on the right in the above equation. Let us make a substitution $ u = t^{\sfrac{1}{3}}$. So, we get :
+\begin{equation*}
+ \begin{split}
+  u = t^{\sfrac{1}{3}} & \implies du = \frac{1}{3} t^{\sfrac{-2}{3}} dt \\
+  \\
+  \text{At } t = 0 \text{ ; } u = 0 & \text{ and at } t = \frac{1}{2} \text{ ; } u = \Big(\frac{1}{2}\Big)^{\sfrac{1}{3}}\\
+  \\
+  \end{split}  
+\end{equation*}
+
+Now, the singularity at 0 has been taken care of and the integral becomes :
+\begin{equation*}
+ \int_{0}^{\sfrac{1}{2}} t^{\sfrac{-2}{3}} (1-t)^{\sfrac{-1}{3}} dt = 3 \int_{0}^{0.5^{\sfrac{1}{3}}} (1-u^{3})^{\sfrac{-1}{3}} du
+\end{equation*}
+
+Similarly, consider the second integral. Let us make a substitution $ s = (1-t)^{\sfrac{2}{3}}$. So, we get :
+\begin{equation*}
+ \begin{split}
+  s = (1-t)^{\sfrac{2}{3}} & \implies ds = \frac{-2}{3} (1-t)^{\sfrac{-1}{3}} dt \\
+  \\
+  \text{At } t = \frac{1}{2} \text{ ; } s & = \Big(\frac{1}{2}\Big)^{\sfrac{2}{3}} \text{ and at } t = 1 \text{ ; } s = 0\\
+  \\
+  \end{split}  
+\end{equation*}
+
+Now, the singularity at 1 has been taken care of and the integral becomes :
+\begin{equation*}
+ \int_{\sfrac{1}{2}}^{1} t^{\sfrac{-2}{3}} (1-t)^{\sfrac{-1}{3}} dt = \frac{3}{2}\int_{0}^{0.5^{\sfrac{2}{3}}} (1 - s^{\sfrac{3}{2}})^{\sfrac{-2}{3}} ds
+\end{equation*}
+
+Therefore, finally, the integral $I$ becomes :
+\begin{equation*}
+  \boxed{I = 3 \int_{0}^{0.5^{\sfrac{1}{3}}} (1-u^{3})^{\sfrac{-1}{3}} du + \frac{3}{2}\int_{0}^{0.5^{\sfrac{2}{3}}} (1 - s^{\sfrac{3}{2}})^{\sfrac{-2}{3}} ds}
+\end{equation*}
+
+\newpage
+
+\section*{Python code and analysis}
+\begin{lstlisting}[language=python]
+#!/usr/bin/python
+
+import numpy as np
+
+def trapezoidal(function,a,b,stepsize):
+    """
+    Function that takes a function, lower limit a, upper limit b and stepsize and calculates the integral using trapezoidal method.
+
+    """
+    interval = np.arange(a,b+stepsize,stepsize) ## array of the interval points
+    integral = 0 ## variable to store the sum
+    for i in range(1,len(interval)-1,2):
+        integral += (stepsize/2)*(function(interval[i-1]) + 2*function(interval[i]) + function(interval[i+1]))
+    return integral
+
+def simpsons(function,a,b,stepsize):
+    """
+    Function that takes a function, lower limit a, upper limit b and stepsize and calculates the integral using simpsons method.
+    """
+    interval = np.arange(a,b+stepsize,stepsize) ## array of interrval points
+    integral = 0 ## variable to store the sum
+    for i in range(1,len(interval)-1,2):
+        integral += (stepsize/3)*(function(interval[i-1]) + 4*function(interval[i]) + function(interval[i+1]))
+    return integral                           
+
+######### Define your function and limits of integration ############
+
+def func_l(u):
+    return 3*(1 - (u)**3)**(-1/3)
+
+def func_r(s):
+    return (3/2)*(1 - (s)**(3/2))**(-2/3)
+
+a_l = 0 
+b_l = (0.5)**(1/3)
+no_of_bins = 10**3
+stepsize_l = (b_l - a_l)/no_of_bins
+
+a_r = 0
+b_r = (0.5)**(2/3)
+stepsize_r = (b_r - a_r)/no_of_bins
+
+# The final answer in trapezoidal and simpsons methods respectively are
+t_inte = trapezoidal(func_l,a_l,b_l,stepsize_l) + trapezoidal(func_r,a_r,b_r,stepsize_r)
+s_inte = simpsons(func_l,a_l,b_l,stepsize_l) + simpsons(func_r,a_r,b_r,stepsize_r)
+
+\end{lstlisting}
+
+The outputs are shown below and the values that already converge are shaded
+
+\input{Homework_1_out}
+
+\newpage
+
+\section*{C++ code and analysis}
+\begin{lstlisting}[language=c++]
+#include <iostream>
+#include <math.h>
+using namespace std;
+
+double f_l(double u){
+        double e = -1.0/3.0;
+        return 3.0*pow((1 - pow(u,3.0)),e);
+}
+
+double f_r(double s){
+        double g = 3.0/2.0;
+        double h = -2.0/3.0;
+        return g*pow((1 - pow(s,g)),h);
+
+}
+
+int main(){
+        double a_l = 0.0;
+        double b_l = pow(0.5,1.0/3.0);
+        double number_of_steps = pow(10,4);
+        double stepsize_l = (b_l - a_l)/number_of_steps;
+
+        double trap_l = 0;
+        double simp_l = 0;
+        for (double i = a_l + stepsize_l; i < b_l; i += 2.0*stepsize_l){
+                trap_l += (stepsize_l/2.0)*(f_l(i-stepsize_l) + 2.0*f_l(i) + f_l(i+stepsize_l));
+                simp_l += (stepsize_l/3.0)*(f_l(i-stepsize_l) + 4.0*f_l(i) + f_l(i+stepsize_l));
+        }
+
+
+        double a_r = 0.0;
+        double b_r = pow(0.5,2.0/3.0);
+        double stepsize_r = (b_r - a_r)/number_of_steps;
+
+        double trap_r = 0;
+        double simp_r = 0;
+        for (double i = a_r + stepsize_r; i < b_r; i += 2.0*stepsize_r){
+                trap_r += (stepsize_r/2.0)*(f_r(i-stepsize_r) + 2.0*f_r(i) + f_r(i+stepsize_r));
+                simp_r += (stepsize_r/3.0)*(f_r(i-stepsize_r) + 4.0*f_r(i) + f_r(i+stepsize_r));
+        }       
+
+        double final_trap = trap_l + trap_r;
+        double final_simp = simp_l + simp_r;
+
+        cout << "Step size : (left) : " << stepsize_l << " (right) : "<< stepsize_r << endl;
+        cout << "Trapezoidal method : " << final_trap << endl;
+        cout << "Simpsons method : " << final_simp << endl;
+        return 0;
+}
+\end{lstlisting}
+
+The results are :
+
+\input{Homework_1_out_cpp}
+
+
+\end{document}
