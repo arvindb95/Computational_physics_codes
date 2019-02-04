@@ -45,7 +45,7 @@ def Newton_Raphson(f,x0,stepsize):
     while((x0 - x1) >= stepsize**(8.0)):
         x0 = x1
         fprime = firstDerivative_O4(f,x0,stepsize)
-        x1 = x0 - f(x0)/fprime
+        x1 = x0 - (f(x0)/fprime)
     return x1
     
 def get_energy(eta):

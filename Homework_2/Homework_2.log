@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.10.15)  3 FEB 2019 15:29
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.10.15)  3 FEB 2019 22:32
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -959,7 +959,7 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 Package hyperref Info: Option `colorlinks' set `true' on input line 19.
 
-No file Homework_2.aux.
+(./Homework_2.aux)
 \openout1 = `Homework_2.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 54.
@@ -976,7 +976,7 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 54.
 LaTeX Font Info:    ... okay on input line 54.
 LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 54.
 LaTeX Font Info:    Try loading font information for TS1+cmr on input line 54.
-(/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
+ (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    ... okay on input line 54.
@@ -1059,6 +1059,8 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 54.
 LaTeX Info: Redefining \pageref on input line 54.
 LaTeX Info: Redefining \nameref on input line 54.
+
+(./Homework_2.out) (./Homework_2.out)
 \@outlinefile=\write3
 \openout3 = `Homework_2.out'.
 
@@ -1093,48 +1095,53 @@ Overfull \vbox (6.74718pt too high) has occurred while \output is active []
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}])
-<transcendental_sol.pdf, id=85, 462.52798pt x 346.89601pt>
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2015/06/04 1.6 listings language file
+)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2015/06/04 1.6 listings language file
+)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
+)
+Underfull \vbox (badness 10000) detected at line 203
+ []
+
+[2] <transcendental_sol.pdf, id=152, 462.52798pt x 346.89601pt>
 File: transcendental_sol.pdf Graphic file (type pdf)
 
 <use transcendental_sol.pdf>
-Package pdftex.def Info: transcendental_sol.pdf used on input line 132.
+Package pdftex.def Info: transcendental_sol.pdf used on input line 209.
 (pdftex.def)             Requested size: 416.27133pt x 312.20352pt.
 
-<wavefunction_plot_zoomed.pdf, id=86, 462.52798pt x 346.89601pt>
+<wavefunction_plot_zoomed.pdf, id=153, 462.52798pt x 346.89601pt>
 File: wavefunction_plot_zoomed.pdf Graphic file (type pdf)
 
 <use wavefunction_plot_zoomed.pdf>
-Package pdftex.def Info: wavefunction_plot_zoomed.pdf used on input line 137.
+Package pdftex.def Info: wavefunction_plot_zoomed.pdf used on input line 214.
 (pdftex.def)             Requested size: 416.27133pt x 312.20352pt.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 141.
- [2 <./transcendental_sol.pdf> <./wavefunction_plot_zoomed.pdf
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 218.
+ [3 <./transcendental_sol.pdf> <./wavefunction_plot_zoomed.pdf
 
 pdfTeX warning: /usr/bin/pdflatex (file ./wavefunction_plot_zoomed.pdf): PDF in
 clusion: multiple pdfs with page group included in a single page
 >]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 141.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 218.
  (./Homework_2.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 141.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 141.
-
-
-Package rerunfilecheck Warning: File `Homework_2.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `Homework_2.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 141.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 218.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 218.
+Package rerunfilecheck Info: File `Homework_2.out' has not changed.
+(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 218.
  ) 
 Here is how much of TeX's memory you used:
- 16672 strings out of 493029
- 282575 string characters out of 6136233
- 624703 words of memory out of 5000000
- 20001 multiletter control sequences out of 15000+600000
+ 16908 strings out of 493029
+ 285776 string characters out of 6136233
+ 671041 words of memory out of 5000000
+ 20161 multiletter control sequences out of 15000+600000
  7309 words of font info for 27 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,7n,42p,10379b,1544s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,7n,60p,10379b,1544s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texli
 ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/tex
 mf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dis
@@ -1143,10 +1150,10 @@ t/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts
 public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
 msfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
 cm/cmsy8.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm0800.pfb>
-Output written on Homework_2.pdf (2 pages, 110701 bytes).
+Output written on Homework_2.pdf (3 pages, 119899 bytes).
 PDF statistics:
- 225 PDF objects out of 1000 (max. 8388607)
- 142 compressed objects within 2 object streams
- 71 named destinations out of 1000 (max. 500000)
+ 306 PDF objects out of 1000 (max. 8388607)
+ 221 compressed objects within 3 object streams
+ 135 named destinations out of 1000 (max. 500000)
  11 words of extra memory for PDF output out of 10000 (max. 10000000)
 
